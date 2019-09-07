@@ -1,0 +1,21 @@
+version: '3'
+services:
+  vue:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - testnet
+  es:
+    build: ./elasticsearch
+    ports:
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+    networks:
+      - testnet
+
+networks:
+  testnet:
+    driver: bridge
+  
